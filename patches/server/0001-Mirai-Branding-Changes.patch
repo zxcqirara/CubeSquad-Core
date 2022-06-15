@@ -13,7 +13,7 @@ index 50112767dff03bc3d9b3cc527e20f1b0d8df7155..c6945d96205d0e431eeca98eaa230952
  
  dependencies {
 -    implementation(project(":purpur-api")) // Pufferfish // Paper // Purpur
-+    implementation(project(":mirai-api")) // Pufferfish // Paper // Purpur // Mirai
++    implementation(project(":cubesquad-api")) // Pufferfish // Paper // Purpur // Mirai // CubeSquad
      // Pufferfish start
      implementation("io.papermc.paper:paper-mojangapi:1.18.2-R0.1-SNAPSHOT") {
          exclude("io.papermc.paper", "paper-api")
@@ -29,7 +29,7 @@ index 50112767dff03bc3d9b3cc527e20f1b0d8df7155..c6945d96205d0e431eeca98eaa230952
              "Main-Class" to "org.bukkit.craftbukkit.Main",
              "Implementation-Title" to "CraftBukkit",
 -            "Implementation-Version" to "git-Purpur-$implementationVersion", // Pufferfish // Purpur
-+            "Implementation-Version" to "git-Mirai-Purpur-$implementationVersion", // Pufferfish // Purpur // Mirai
++            "Implementation-Version" to "git-CubeSquad-$implementationVersion", // Pufferfish // Purpur // Mirai // CubeSquad
              "Implementation-Vendor" to date, // Paper
              "Specification-Title" to "Bukkit",
              "Specification-Version" to project.version,
@@ -42,7 +42,7 @@ index ed13b7b3f9d2a0b644d17d1019d42cbc4bbe72f7..83a322bb56ad6fe41047e18df22f3246
              // Only start Metrics, if it's enabled in the config
              if (config.getBoolean("enabled", true)) {
 -                Metrics metrics = new Metrics("Purpur", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish // Purpur
-+                Metrics metrics = new Metrics("Mirai", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish // Purpur // Mirai
++                Metrics metrics = new Metrics("CubeSquad", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish // Purpur // Mirai // CubeSquad
  
                  metrics.addCustomChart(new Metrics.SimplePie("minecraft_version", () -> {
                      String minecraftVersion = Bukkit.getVersion();
@@ -51,7 +51,7 @@ index ed13b7b3f9d2a0b644d17d1019d42cbc4bbe72f7..83a322bb56ad6fe41047e18df22f3246
                  metrics.addCustomChart(new Metrics.SingleLineChart("players", () -> Bukkit.getOnlinePlayers().size()));
                  metrics.addCustomChart(new Metrics.SimplePie("online_mode", () -> Bukkit.getOnlineMode() ? "online" : (PaperConfig.isProxyOnlineMode() ? "bungee" : "offline"))); // Purpur
 -                metrics.addCustomChart(new Metrics.SimplePie("purpur_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur
-+                metrics.addCustomChart(new Metrics.SimplePie("mirai_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur // Mirai
++                metrics.addCustomChart(new Metrics.SimplePie("cubesquad_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur // Mirai // CubeSquad
  
                  metrics.addCustomChart(new Metrics.DrilldownPie("java_version", () -> {
                      Map<String, Map<String, Integer>> map = new HashMap<>();
@@ -64,7 +64,7 @@ index 8c3c68465197fafc14849dc38a572e309931e2a2..83942f84525462a7a9c1d0c2895176ec
      protected LineReader buildReader(LineReaderBuilder builder) {
          builder
 -                .appName("Purpur") // Purpur
-+                .appName("Mirai") // Purpur // Mirai
++                .appName("CubeSquad") // Purpur // Mirai // CubeSquad
                  .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
                  .completer(new ConsoleCommandCompleter(this.server))
                  .option(LineReader.Option.COMPLETE_IN_WORD, true);
@@ -77,7 +77,7 @@ index 20cdc0eb26fd53a4193b39171982dfa255d355bf..fa24e6065760259c4c31ffb5132eb773
      @DontObfuscate
      public String getServerModName() {
 -        return org.purpurmc.purpur.PurpurConfig.serverModName; // Purpur - Purpur > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
-+        return org.purpurmc.purpur.PurpurConfig.serverModName; // Mirai - Mirai > // Purpur - Purpur > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return org.purpurmc.purpur.PurpurConfig.serverModName; // CubeSquad - CubeSquad > // Mirai - Mirai > // Purpur - Purpur > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
      }
  
      public SystemReport fillSystemReport(SystemReport details) {
@@ -90,7 +90,7 @@ index bdabc6ec495ca56848ad7b8cc7aef7e5788c7efa..66c21826d4b2ecfcb3341f32e5fd357f
  
  public final class CraftServer implements Server {
 -    private final String serverName = "Purpur"; // Paper // Pufferfish // Purpur
-+    private final String serverName = "Mirai"; // Paper // Pufferfish // Purpur // Mirai
++    private final String serverName = "CubeSquad"; // Paper // Pufferfish // Purpur // Mirai // CubeSquad
      private final String serverVersion;
      private final String bukkitVersion = Versioning.getBukkitVersion();
      private final Logger logger = Logger.getLogger("Minecraft");
@@ -103,7 +103,7 @@ index f5a490814268949894581b6caeedb53d7588a621..1e74799bb012ca45769a3fd103f0b24e
      @Override
      public com.destroystokyo.paper.util.VersionFetcher getVersionFetcher() {
 -        return new com.destroystokyo.paper.PaperVersionFetcher(); // Pufferfish // Purpur
-+        return new wtf.etil.mirai.MiraiVersionFetcher(); // Mirai
++        return new wtf.etil.mirai.MiraiVersionFetcher(); // CubeSquad
      }
  
      @Override
@@ -116,7 +116,7 @@ index 99597258e8e88cd9e2c901c4ac3ff7faeeabee2b..3e9a46500401da7634766b720677e11f
          String result = "Unknown-Version";
  
 -        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/org.purpurmc.purpur/purpur-api/pom.properties"); // Pufferfish // Purpur
-+        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/wtf.etil.mirai/mirai-api/pom.properties"); // Pufferfish // Purpur // Mirai
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/dev.cubesquad/cubesquad-api/pom.properties"); // Pufferfish // Purpur // Mirai // CubeSquad
          Properties properties = new Properties();
  
          if (stream != null) {
@@ -129,7 +129,7 @@ index c5b18b8d4ad74764fdeb5a1e21231e212e808b99..2c66a91144e79a9b718619e3ef859768
      }
  
 -    public static String serverModName = "Purpur";
-+    public static String serverModName = "Mirai";
++    public static String serverModName = "CubeSquad";
      private static void serverModName() {
          serverModName = getString("settings.server-mod-name", serverModName);
      }
