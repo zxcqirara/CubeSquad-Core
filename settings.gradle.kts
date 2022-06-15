@@ -5,6 +5,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "cubesquad-core"
+rootProject.name = "mirai"
 
-include("cubesquad-api", "cubesquad-server")
+include("mirai-api", "mirai-server")
