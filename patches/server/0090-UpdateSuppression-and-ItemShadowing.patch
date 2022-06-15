@@ -32,10 +32,10 @@ index 230f5adc4df1679597f5b9aa9fcd36501efbebdd..d19b8dd9aad623522db62fef9cdde918
                          String playerIP = com.destroystokyo.paper.PaperConfig.logPlayerIpAddresses ? String.valueOf(networkmanager.getRemoteAddress()) : "<ip address withheld>"; // Paper
                          if (networkmanager.getPlayer() != null) {
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index c8d56947305c981a3268ce4ae3e975db350ceff2..20c3724b70cfa11f07766bb3e997767fa8e2d81b 100644
+index 5ee8f06b7b52b8dbef06b95f5602a3d26da8fe17..142671118bdf1689697065aa5f8fd915acee1794 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -1588,7 +1588,14 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<TickTa
+@@ -1628,7 +1628,14 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<Runnab
  
              try {
                  worldserver.timings.doTick.startTiming(); // Spigot
@@ -52,7 +52,7 @@ index c8d56947305c981a3268ce4ae3e975db350ceff2..20c3724b70cfa11f07766bb3e997767f
                  for (final io.papermc.paper.chunk.SingleThreadChunkRegionManager regionManager : worldserver.getChunkSource().chunkMap.regionManagers) {
                      regionManager.recalculateRegions();
 diff --git a/src/main/java/net/minecraft/world/inventory/AbstractContainerMenu.java b/src/main/java/net/minecraft/world/inventory/AbstractContainerMenu.java
-index a0e5e2daff21564a85c46ad469b79139cc26c1fd..dc495ade5d77aa721a5b5411bc2e7c3575613cae 100644
+index bc0a49d41bdbc5544f789150ac239617d03b5837..df07a223b6a972fadadd8398e56763ec241b301e 100644
 --- a/src/main/java/net/minecraft/world/inventory/AbstractContainerMenu.java
 +++ b/src/main/java/net/minecraft/world/inventory/AbstractContainerMenu.java
 @@ -617,8 +617,8 @@ public abstract class AbstractContainerMenu {
@@ -76,10 +76,10 @@ index a0e5e2daff21564a85c46ad469b79139cc26c1fd..dc495ade5d77aa721a5b5411bc2e7c35
                              }
                          }
 diff --git a/src/main/java/net/minecraft/world/level/Level.java b/src/main/java/net/minecraft/world/level/Level.java
-index 160c0f37aa3aaf7598f852acf9bd444f79444c97..cf3d39693284ad780d526451bc8380f52e6370c9 100644
+index 3fccb5e0449ecba8b9dd0dcf1da69bf2d2c7594e..996fdb4f109b19f1cd074b1dfc993d8a4917ee6d 100644
 --- a/src/main/java/net/minecraft/world/level/Level.java
 +++ b/src/main/java/net/minecraft/world/level/Level.java
-@@ -769,10 +769,15 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
+@@ -918,10 +918,15 @@ public abstract class Level implements LevelAccessor, AutoCloseable {
                  // CraftBukkit end
                  iblockdata.neighborChanged(this, pos, sourceBlock, neighborPos, false);
              // Spigot Start

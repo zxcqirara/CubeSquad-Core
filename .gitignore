@@ -46,8 +46,8 @@ out/
 # other stuff
 run/
 
-mirai-server
-mirai-api
+cubesquad-server
+cubesquad-api
 
 
 !gradle/wrapper/gradle-wrapper.jar

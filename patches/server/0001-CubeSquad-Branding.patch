@@ -1,0 +1,247 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ChA0S-f4me <Nikita.da.ok@gmail.com>
+Date: Thu, 16 Jun 2022 00:59:28 +0300
+Subject: [PATCH] CubeSquad Branding
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index 93b62961f45ef810dd4f26b0c240465f1eafd873..e537eebe0d6f3a90ea090d09e2cd9f125917362d 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -6,6 +6,7 @@ plugins {
+     java
+     `maven-publish`
+     id("com.github.johnrengelman.shadow")
++    kotlin("jvm") version "1.7.0"
+ }
+ 
+ dependencies {
+@@ -83,7 +84,7 @@ tasks.jar {
+         attributes(
+             "Main-Class" to "org.bukkit.craftbukkit.Main",
+             "Implementation-Title" to "CraftBukkit",
+-            "Implementation-Version" to "git-Mirai-Purpur-$implementationVersion", // Pufferfish // Purpur // Mirai
++            "Implementation-Version" to "git-CubeSquad-$implementationVersion", // Pufferfish // Purpur // Mirai // CubeSquad
+             "Implementation-Vendor" to date, // Paper
+             "Specification-Title" to "Bukkit",
+             "Specification-Version" to project.version,
+diff --git a/src/main/java/com/destroystokyo/paper/Metrics.java b/src/main/java/com/destroystokyo/paper/Metrics.java
+index 83a322bb56ad6fe41047e18df22f3246c8db83fe..b1af5af6f49346ca96379e85cfd1c5bd3e581f90 100644
+--- a/src/main/java/com/destroystokyo/paper/Metrics.java
++++ b/src/main/java/com/destroystokyo/paper/Metrics.java
+@@ -593,7 +593,7 @@ public class Metrics {
+             boolean logFailedRequests = config.getBoolean("logFailedRequests", false);
+             // Only start Metrics, if it's enabled in the config
+             if (config.getBoolean("enabled", true)) {
+-                Metrics metrics = new Metrics("Mirai", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish // Purpur // Mirai
++                Metrics metrics = new Metrics("CubeSquad", serverUUID, logFailedRequests, Bukkit.getLogger()); // Pufferfish // Purpur // Mirai
+ 
+                 metrics.addCustomChart(new Metrics.SimplePie("minecraft_version", () -> {
+                     String minecraftVersion = Bukkit.getVersion();
+@@ -603,7 +603,7 @@ public class Metrics {
+ 
+                 metrics.addCustomChart(new Metrics.SingleLineChart("players", () -> Bukkit.getOnlinePlayers().size()));
+                 metrics.addCustomChart(new Metrics.SimplePie("online_mode", () -> Bukkit.getOnlineMode() ? "online" : (PaperConfig.isProxyOnlineMode() ? "bungee" : "offline"))); // Purpur
+-                metrics.addCustomChart(new Metrics.SimplePie("mirai_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur // Mirai
++                metrics.addCustomChart(new Metrics.SimplePie("cubesquad_version", () -> (Metrics.class.getPackage().getImplementationVersion() != null) ? Metrics.class.getPackage().getImplementationVersion() : "unknown")); // Purpur // Mirai
+ 
+                 metrics.addCustomChart(new Metrics.DrilldownPie("java_version", () -> {
+                     Map<String, Map<String, Integer>> map = new HashMap<>();
+diff --git a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+index 83942f84525462a7a9c1d0c2895176ec9d0a6529..73e41fe6016e98232fe49cc852c8dda19e78d04d 100644
+--- a/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
++++ b/src/main/java/com/destroystokyo/paper/console/PaperConsole.java
+@@ -17,7 +17,7 @@ public final class PaperConsole extends SimpleTerminalConsole {
+     @Override
+     protected LineReader buildReader(LineReaderBuilder builder) {
+         builder
+-                .appName("Mirai") // Purpur // Mirai
++                .appName("CubeSquad") // Purpur // Mirai // CubeSquad
+                 .variable(LineReader.HISTORY_FILE, java.nio.file.Paths.get(".console_history"))
+                 .completer(new ConsoleCommandCompleter(this.server))
+                 .option(LineReader.Option.COMPLETE_IN_WORD, true);
+diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
+index 142671118bdf1689697065aa5f8fd915acee1794..195d4153198f27c8c6dc5d8df15f34d54f00f6c5 100644
+--- a/src/main/java/net/minecraft/server/MinecraftServer.java
++++ b/src/main/java/net/minecraft/server/MinecraftServer.java
+@@ -1741,7 +1741,7 @@ public abstract class MinecraftServer extends ReentrantBlockableEventLoop<Runnab
+ 
+     @DontObfuscate
+     public String getServerModName() {
+-        return org.purpurmc.purpur.PurpurConfig.serverModName; // Mirai - Mirai > // Purpur - Purpur > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
++        return org.purpurmc.purpur.PurpurConfig.serverModName; // CubeSquad - cs > // Mirai - Mirai > // Purpur - Purpur > // Pufferfish - Pufferfish > // Paper - Paper > // Spigot - Spigot > // CraftBukkit - cb > vanilla!
+     }
+ 
+     public SystemReport fillSystemReport(SystemReport details) {
+diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+index a4496e5c0e670398f31c5f556470d16af66aef57..6aa8d57f163ae4c65c81bee612e0b977518e97bb 100644
+--- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
++++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
+@@ -249,7 +249,7 @@ import javax.annotation.Nullable; // Paper
+ import javax.annotation.Nonnull; // Paper
+ 
+ public final class CraftServer implements Server {
+-    private final String serverName = "Mirai"; // Paper // Pufferfish // Purpur // Mirai
++    private final String serverName = "CubeSquad"; // Paper // Pufferfish // Purpur // Mirai // CubeSquad
+     private final String serverVersion;
+     private final String bukkitVersion = Versioning.getBukkitVersion();
+     private final Logger logger = Logger.getLogger("Minecraft");
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
+index 61ee37d1c81274f58922fde4138536b10847508b..03862b8daa366f546d6081e96ebdfe6467197478 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java
+@@ -430,7 +430,7 @@ public final class CraftMagicNumbers implements UnsafeValues {
+ 
+     @Override
+     public com.destroystokyo.paper.util.VersionFetcher getVersionFetcher() {
+-        return new wtf.etil.mirai.MiraiVersionFetcher(); // Mirai
++        return new dev.cubesquad.CubeSquadVersionFetcher(); // CubeSquad
+     }
+ 
+     @Override
+diff --git a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+index 3e9a46500401da7634766b720677e11f3db28e76..ed011eb50a4496233424342d3ddad915a3698b95 100644
+--- a/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
++++ b/src/main/java/org/bukkit/craftbukkit/util/Versioning.java
+@@ -11,7 +11,7 @@ public final class Versioning {
+     public static String getBukkitVersion() {
+         String result = "Unknown-Version";
+ 
+-        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/wtf.etil.mirai/mirai-api/pom.properties"); // Pufferfish // Purpur // Mirai
++        InputStream stream = Bukkit.class.getClassLoader().getResourceAsStream("META-INF/maven/dev.cubesquad/cubesquad-api/pom.properties"); // Pufferfish // Purpur // Mirai // CubeSquad
+         Properties properties = new Properties();
+ 
+         if (stream != null) {
+diff --git a/src/main/java/org/purpurmc/purpur/PurpurConfig.java b/src/main/java/org/purpurmc/purpur/PurpurConfig.java
+index 2c66a91144e79a9b718619e3ef8597684f7cadbb..a11e788996653abb5c1ac1089a310cfb9d1972c7 100644
+--- a/src/main/java/org/purpurmc/purpur/PurpurConfig.java
++++ b/src/main/java/org/purpurmc/purpur/PurpurConfig.java
+@@ -235,7 +235,7 @@ public class PurpurConfig {
+         if (!TimingsManager.hiddenConfigs.contains("settings.seed")) TimingsManager.hiddenConfigs.add("settings.seed");
+     }
+ 
+-    public static String serverModName = "Mirai";
++    public static String serverModName = "CubeSquad";
+     private static void serverModName() {
+         serverModName = getString("settings.server-mod-name", serverModName);
+     }
+diff --git a/src/main/kotlin/dev/cubesquad/CubeSquadVersionFetcher.kt b/src/main/kotlin/dev/cubesquad/CubeSquadVersionFetcher.kt
+new file mode 100644
+index 0000000000000000000000000000000000000000..5738d03b6244f93978432b03e5365e2e3624420f
+--- /dev/null
++++ b/src/main/kotlin/dev/cubesquad/CubeSquadVersionFetcher.kt
+@@ -0,0 +1,113 @@
++package dev.cubesquad
++
++import com.destroystokyo.paper.VersionHistoryManager
++import com.destroystokyo.paper.util.VersionFetcher
++import com.google.gson.Gson
++import com.google.gson.JsonObject
++import net.kyori.adventure.text.Component
++import net.kyori.adventure.text.JoinConfiguration
++import net.kyori.adventure.text.format.NamedTextColor
++import net.kyori.adventure.text.format.TextDecoration
++import org.bukkit.craftbukkit.CraftServer
++import java.io.IOException
++import java.net.URI
++import java.net.http.HttpClient
++import java.net.http.HttpRequest
++import java.net.http.HttpResponse
++import java.net.http.HttpResponse.BodyHandler
++import java.net.http.HttpResponse.ResponseInfo
++import java.nio.charset.StandardCharsets
++import java.util.concurrent.TimeUnit
++import java.util.function.Function
++import java.util.logging.Level
++import java.util.logging.Logger
++
++class CubeSquadVersionFetcher : VersionFetcher {
++  override fun getCacheTime(): Long {
++    return TimeUnit.MINUTES.toMillis(30)
++  }
++
++  override fun getVersionMessage(serverVersion: String): Component {
++    val parts =
++      CraftServer::class.java.getPackage().implementationVersion.split("-".toRegex()).dropLastWhile { it.isEmpty() }
++        .toTypedArray()
++
++    val component = if (parts.size != 3) {
++      Component.text("Unknown server version.", NamedTextColor.RED)
++    } else {
++      fetchGithubVersion(parts[2])
++    }
++    val history = history
++
++    return if (history != null) Component.join(
++      JoinConfiguration.noSeparators(), component, Component.newline(),
++      this.history!!
++    ) else component
++  }
++
++  // Based off code contributed by Techcable <Techcable@outlook.com> in Paper/GH-65
++  private fun fetchGithubVersion(hash: String): Component {
++    val uri = URI.create(String.format(GITHUB_FORMAT, hash))
++    val request = HttpRequest.newBuilder(uri).build()
++    try {
++      val response = client.send(request, JSON_OBJECT_BODY_HANDLER)
++      if (response.statusCode() != 200) {
++        return Component.text(
++          "Received invalid status code (" + response.statusCode() + ") from server.",
++          NamedTextColor.RED
++        )
++      }
++      val obj = response.body()
++      val versionDiff = obj["behind_by"].asInt
++      return getResponseMessage(versionDiff)
++    } catch (e: IOException) {
++      LOGGER.log(Level.WARNING, "Failed to look up version from GitHub", e)
++      return Component.text("Failed to retrieve version from server.", NamedTextColor.RED)
++    } catch (e: InterruptedException) {
++      LOGGER.log(Level.WARNING, "Failed to look up version from GitHub", e)
++      return Component.text("Failed to retrieve version from server.", NamedTextColor.RED)
++    }
++  }
++
++  private fun getResponseMessage(versionDiff: Int): Component {
++    return when ((-1).coerceAtLeast(1.coerceAtMost(versionDiff))) {
++      -1 -> Component.text("You are running an unsupported version of Mirai.", NamedTextColor.RED)
++      0 -> Component.text("You are on the latest version!", NamedTextColor.GREEN)
++      else -> Component.text(
++        "You are running " + versionDiff + " version" + (if (versionDiff == 1) "" else "s") + " beyond. " +
++          "Please update your server when possible to maintain stability, security, and receive the latest optimizations.",
++        NamedTextColor.RED
++      )
++    }
++  }
++
++  private val history: Component?
++    get() {
++      val data = VersionHistoryManager.INSTANCE.versionData ?: return null
++      val oldVersion = data.oldVersion ?: return null
++      return Component.text("Previous version: $oldVersion", NamedTextColor.GRAY, TextDecoration.ITALIC)
++    }
++
++  companion object {
++    /**
++     * Huge shoutout to Airplane for providing basically this entire class.
++     * My brain and fingers thanks you.
++     *
++     * ~ Code
++     */
++    private val LOGGER = Logger.getLogger("MiraiVersionFetcher")
++    private val client = HttpClient.newHttpClient()
++    private const val GITHUB_FORMAT = "https://api.github.com/repos/ChA0S-f4me/CubeSquad-Core/compare/master...%s"
++    private val JSON_OBJECT_BODY_HANDLER =
++      BodyHandler {
++        HttpResponse.BodySubscribers.mapping(
++          HttpResponse.BodySubscribers.ofString(StandardCharsets.UTF_8)
++        ) { string: String? ->
++          Gson().fromJson(
++            string,
++            JsonObject::class.java
++          )
++        }
++      }
++  }
++}
+\ No newline at end of file
