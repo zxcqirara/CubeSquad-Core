@@ -11,4 +11,3 @@ Core for our vanilla minecraft server based on MiraiMC
 ```bash
 ./gradlew applyPatches && ./gradlew createReobfPaperclipJar
 ```
-*Compiled core will be in `build/libs` folder*
