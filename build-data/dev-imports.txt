@@ -18,3 +18,4 @@ minecraft net.minecraft.world.level.levelgen.feature.PillagerOutpostFeature
 minecraft net.minecraft.world.level.levelgen.feature.OceanMonumentFeature
 minecraft net.minecraft.world.level.levelgen.feature.NetherFortressFeature
 minecraft net.minecraft.world.level.levelgen.feature.GeodeFeature
+minecraft net.minecraft.server.commands.SeedCommand

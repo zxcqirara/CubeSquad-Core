@@ -1,0 +1,40 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ChA0S-f4me <Nikita.da.ok@gmail.com>
+Date: Fri, 17 Jun 2022 00:37:09 +0300
+Subject: [PATCH] Matter Seed Command
+
+
+diff --git a/src/main/java/net/minecraft/server/commands/SeedCommand.java b/src/main/java/net/minecraft/server/commands/SeedCommand.java
+index 6f4aa3fce42a53883db1485731e03822887cadc0..a1f365aa2bc87306a614e7c723adb38a66050a39 100644
+--- a/src/main/java/net/minecraft/server/commands/SeedCommand.java
++++ b/src/main/java/net/minecraft/server/commands/SeedCommand.java
+@@ -10,6 +10,7 @@ import net.minecraft.network.chat.ComponentUtils;
+ import net.minecraft.network.chat.HoverEvent;
+ import net.minecraft.network.chat.TextComponent;
+ import net.minecraft.network.chat.TranslatableComponent;
++import su.plo.matter.Globals; // Matter
+ 
+ public class SeedCommand {
+     public static void register(CommandDispatcher<CommandSourceStack> dispatcher, boolean dedicated) {
+@@ -20,7 +21,21 @@ public class SeedCommand {
+             Component component = ComponentUtils.wrapInSquareBrackets((new TextComponent(String.valueOf(l))).withStyle((style) -> {
+                 return style.withColor(ChatFormatting.GREEN).withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, String.valueOf(l))).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.copy.click"))).withInsertion(String.valueOf(l));
+             }));
++
++            // Matter start
++            Globals.INSTANCE.setupGlobals(context.getSource().getLevel());
++            String seedStr = Globals.seedToString(Globals.worldSeed);
++            Component result = ComponentUtils.wrapInSquareBrackets(new TranslatableComponent("chat.copy.click")).withStyle(style -> {
++                return style.withColor(ChatFormatting.GREEN)
++                    .withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, seedStr))
++                    .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TranslatableComponent("chat.copy.click")))
++                    .withInsertion(seedStr);
++            });
++            // Matter end
++
+             context.getSource().sendSuccess(new TranslatableComponent("commands.seed.success", component), false);
++            context.getSource().sendSuccess(new TranslatableComponent("Feature seed: %s", result), false); // Matter
++
+             return (int)l;
+         }));
+     }
