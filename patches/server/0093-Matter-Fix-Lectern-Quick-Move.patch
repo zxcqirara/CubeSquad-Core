@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: ChA0S-f4me <Nikita.da.ok@gmail.com>
+Date: Fri, 17 Jun 2022 00:43:54 +0300
+Subject: [PATCH] Matter Fix Lectern Quick Move
+
+
+diff --git a/src/main/java/net/minecraft/world/inventory/LecternMenu.java b/src/main/java/net/minecraft/world/inventory/LecternMenu.java
+index ff79925bc6437222f9ceb133e21bbc0600cc74ed..53aedcdd73a5fb2361986f4b0d1b843ca2632740 100644
+--- a/src/main/java/net/minecraft/world/inventory/LecternMenu.java
++++ b/src/main/java/net/minecraft/world/inventory/LecternMenu.java
+@@ -140,4 +140,11 @@ public class LecternMenu extends AbstractContainerMenu {
+     public int getPage() {
+         return this.lecternData.get(0);
+     }
++
++    // Matter start
++    @Override
++    public ItemStack quickMoveStack(net.minecraft.world.entity.player.Player player, int index) {
++        return ItemStack.EMPTY;
++    }
++    // Matter end
+ }
