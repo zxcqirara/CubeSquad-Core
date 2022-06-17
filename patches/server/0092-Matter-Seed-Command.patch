@@ -23,7 +23,7 @@ index 6f4aa3fce42a53883db1485731e03822887cadc0..a1f365aa2bc87306a614e7c723adb38a
 +
 +            // Matter start
 +            Globals.INSTANCE.setupGlobals(context.getSource().getLevel());
-+            String seedStr = Globals.INSTANCE.seedToString(Globals.INSTANCE.worldSeed());
++            String seedStr = Globals.INSTANCE.seedToString(Globals.INSTANCE.getWorldSeed());
 +            Component result = ComponentUtils.wrapInSquareBrackets(new TranslatableComponent("chat.copy.click")).withStyle(style -> {
 +                return style.withColor(ChatFormatting.GREEN)
 +                    .withClickEvent(new ClickEvent(ClickEvent.Action.COPY_TO_CLIPBOARD, seedStr))
