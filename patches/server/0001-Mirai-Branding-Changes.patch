@@ -12,7 +12,7 @@ index 50112767dff03bc3d9b3cc527e20f1b0d8df7155..afebed7d9fb1840549bbc8d4991f343b
      java
      `maven-publish`
      id("com.github.johnrengelman.shadow")
-+    kotlin("jvm") version "1.7.0" // CubeSquad
++    kotlin("jvm") version "1.6.20" // CubeSquad
  }
  
  dependencies {
